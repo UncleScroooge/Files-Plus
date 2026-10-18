@@ -1,4 +1,4 @@
-﻿<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
+<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
 <UserControl
 	x:Class="Files.App.UserControls.Toolbar"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -855,6 +855,17 @@
 				ToolTipService.ToolTip="{x:Bind Commands.ToggleInfoPane.LabelWithHotKey, Mode=OneWay}"
 				Visibility="{x:Bind ShowPreviewPaneButton, Mode=OneWay}">
 				<controls:ThemedIcon Style="{StaticResource App.ThemedIcons.PanelRight}" />
+			</AppBarToggleButton>
+
+			<!--  Toggle Hermes Assistant Pane  -->
+			<AppBarToggleButton
+				x:Name="HermesButton"
+				Width="Auto"
+				MinWidth="40"
+				ToolTipService.ToolTip="Hermes Assistant"
+				Label="Hermes"
+				LabelPosition="Collapsed">
+				<Image Source="ms-appx:///Assets/HermesLogo.png" Width="18" Height="18" />
 			</AppBarToggleButton>
 		</CommandBar>
 

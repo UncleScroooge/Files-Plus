@@ -1,4 +1,4 @@
-﻿<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
+<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
 <Page
 	x:Class="Files.App.Views.MainPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -12,6 +12,7 @@
 	xmlns:tabbar="using:Files.App.UserControls.TabBar"
 	xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
 	xmlns:uc="using:Files.App.UserControls"
+	xmlns:pane="using:Files.App.UserControls.Pane"
 	xmlns:viewmodels="using:Files.App.ViewModels"
 	xmlns:wctconverters="using:CommunityToolkit.WinUI.Converters"
 	AllowDrop="True"
@@ -187,6 +188,8 @@
 							MinWidth="208" />
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition x:Name="InfoPaneColumnDefinition" Width="Auto" />
+						<ColumnDefinition x:Name="HermesSplitterColumn" Width="Auto" />
+						<ColumnDefinition x:Name="HermesPaneColumn" Width="Auto" />
 						<ColumnDefinition x:Name="ShelfPaneColumn" Width="Auto" />
 					</Grid.ColumnDefinitions>
 
@@ -260,12 +263,29 @@
 						Loaded="PreviewPane_Loaded"
 						Unloaded="PreviewPane_Unloaded" />
 
+					<!--  Hermes Assistant Pane Splitter  -->
+					<controls:GridSplitter
+						x:Name="HermesPaneSizer"
+						Grid.Row="2"
+						Grid.Column="3"
+						Opacity="0"
+						ResizeBehavior="BasedOnAlignment"
+						Style="{StaticResource DefaultGridSplitterStyle}" />
+
+					<!--  Hermes Assistant Pane  -->
+					<pane:HermesPane
+						x:Name="HermesPaneControl"
+						Grid.Row="2"
+						Grid.Column="4"
+						Width="380"
+						HorizontalContentAlignment="Stretch" />
+
 					<!--  Shelf Pane  -->
 					<uc:ShelfPane
 						x:Name="ShelfPane"
 						Grid.Row="0"
 						Grid.RowSpan="5"
-						Grid.Column="3"
+						Grid.Column="5"
 						Margin="4,0,0,0"
 						x:Load="{x:Bind ViewModel.ShowShelfPane, Mode=OneWay}"
 						ClearCommand="{x:Bind ViewModel.ShelfViewModel.ClearItemsCommand}"
