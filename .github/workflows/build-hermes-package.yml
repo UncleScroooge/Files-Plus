@@ -38,6 +38,7 @@ jobs:
       shell: pwsh
       run: |
         msbuild Files.slnx -t:Restore -p:Platform=${{ matrix.platform }} -p:Configuration=${{ matrix.configuration }} -v:quiet
+        nuget restore src/Files.App.Launcher/Files.App.Launcher.vcxproj -SolutionDirectory . -Verbosity quiet
 
     - name: Build Launcher
       shell: pwsh
