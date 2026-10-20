@@ -7,7 +7,6 @@ env:
   DOTNET_NOLOGO: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   APP_PROJECT_PATH: src/Files.App/Files.App.csproj
-  LAUNCHER_PROJECT_PATH: src/Files.App.Launcher/Files.App.Launcher.vcxproj
   APPX_PACKAGE_DIR: D:\a\output\AppxPackages\
   APPX_SELFSIGNED_CERT_PATH: D:\a\output\AppxPackages\Files.SelfSigned.pfx
 
@@ -38,12 +37,6 @@ jobs:
       shell: pwsh
       run: |
         msbuild Files.slnx -t:Restore -p:Platform=${{ matrix.platform }} -p:Configuration=${{ matrix.configuration }} -v:quiet
-        nuget install src/Files.App.Launcher/packages.config -OutputDirectory packages
-
-    - name: Build Launcher
-      shell: pwsh
-      run: |
-        msbuild src/Files.App.Launcher/Files.App.Launcher.vcxproj -t:Build -p:Platform=${{ matrix.platform }} -p:Configuration=${{ matrix.configuration }} -v:quiet
 
     - name: Create self-signed certificate matching manifest
       shell: pwsh
